@@ -1,0 +1,76 @@
+<!-- LOGIN SCREEN -->
+<div
+  id="login-screen"
+  style="
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+  "
+>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon"><i class="ti ti-building-bank" aria-hidden="true"></i></div>
+      <div>
+        <div class="login-logo-text">NexaBank</div>
+        <div class="login-logo-sub">Management Portal</div>
+      </div>
+    </div>
+    <div class="login-heading">Welcome back</div>
+    <div class="login-sub">Sign in to access your dashboard</div>
+
+    <div class="form-group">
+      <label class="form-label">Email address</label>
+      <div class="form-input-icon">
+        <i class="ti ti-mail input-icon" aria-hidden="true"></i>
+        <input
+          class="form-input"
+          type="email"
+          value="admin@nexabank.com"
+          placeholder="you@bank.com"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" style="display: flex; justify-content: space-between">
+        Password
+        <a href="#" style="color: var(--accent); font-size: 11.5px; font-weight: 400"
+          >Forgot password?</a
+        >
+      </label>
+      <div class="form-input-icon">
+        <i class="ti ti-lock input-icon" aria-hidden="true"></i>
+        <input class="form-input" type="password" value="••••••••" placeholder="••••••••" />
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 4px">
+      <input type="checkbox" id="remember" style="width: auto" checked />
+      <label for="remember" style="font-size: 12px; color: var(--text-secondary)"
+        >Remember this device</label
+      >
+    </div>
+
+    <button class="btn-primary" onclick="routeToDashBoard()" style="margin-top: 12px">
+      <i class="ti ti-arrow-right" style="margin-right: 4px" aria-hidden="true"></i> Sign in
+    </button>
+
+    <div class="login-footer">Need access? <a href="#">Contact your administrator</a></div>
+  </div>
+
+  <div
+    style="
+      position: absolute;
+      bottom: 20px;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 11px;
+      text-align: center;
+    "
+  >
+    NexaBank Management System · Secured 256-bit TLS
+  </div>
+</div>

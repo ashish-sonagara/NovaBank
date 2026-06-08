@@ -1,0 +1,58 @@
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-logo">
+      <div class="brand-icon"><i class="ti ti-building-bank" aria-hidden="true"></i></div>
+      <div>
+        <div class="brand-name">NexaBank</div>
+        <div class="brand-sub">Management</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <div class="nav-section-label">Overview</div>
+    <div class="nav-item active" onclick="navTo('dashboard', this)">
+      <i class="ti ti-layout-dashboard nav-icon" aria-hidden="true"></i> Dashboard
+    </div>
+
+    <div class="nav-section-label">Banking</div>
+    <div class="nav-item" onclick="navTo('accounts', this)">
+      <i class="ti ti-credit-card nav-icon" aria-hidden="true"></i> Accounts
+    </div>
+    <div class="nav-item" onclick="navTo('transactions', this)">
+      <i class="ti ti-list nav-icon" aria-hidden="true"></i> Transactions
+    </div>
+    <div class="nav-item" onclick="navTo('atm', this)">
+      <i class="ti ti-receipt nav-icon" aria-hidden="true"></i> ATM Services
+    </div>
+    <div class="nav-item" onclick="navTo('transfer', this)">
+      <i class="ti ti-arrows-exchange nav-icon" aria-hidden="true"></i> Fund Transfer
+    </div>
+
+    <div class="nav-section-label">Reports</div>
+    <div class="nav-item" onclick="navTo('reports', this)">
+      <i class="ti ti-chart-bar nav-icon" aria-hidden="true"></i> Analytics
+    </div>
+
+    <div class="nav-section-label">Settings</div>
+    <div class="nav-item" onclick="navTo('settings', this)">
+      <i class="ti ti-settings nav-icon" aria-hidden="true"></i> Settings
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-card" onclick="doLogout()">
+      <div class="user-avatar">AK</div>
+      <div class="user-info">
+        <div class="user-name">Ashish Kumar</div>
+        <div class="user-role">Administrator</div>
+      </div>
+      <i
+        class="ti ti-logout"
+        style="color: rgba(255, 255, 255, 0.3); font-size: 15px"
+        aria-hidden="true"
+      ></i>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --navy: #0B1437;
+    --navy-mid: #162050;
+    --navy-light: #1E2D6B;
+    --accent: #3B6EE8;
+    --accent-bright: #5B8CF5;
+    --gold: #D4A843;
+    --gold-light: #F0C85A;
+    --surface: #F5F6FA;
+    --surface2: #ECEEF5;
+    --white: #FFFFFF;
+    --text-primary: #0B1437;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    --success: #10B981;
+    --danger: #EF4444;
+    --warning: #F59E0B;
+    --border: rgba(11,20,55,0.1);
+    --sidebar-w: 220px;
+  }
+
+  body { font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--text-primary); }
+
+  .app { display: flex; height: 600px; overflow: hidden; border-radius: 12px; border: 0.5px solid var(--border); box-shadow: 0 4px 32px rgba(11,20,55,0.12); }
