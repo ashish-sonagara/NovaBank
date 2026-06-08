@@ -32,5 +32,4 @@ public class BankAccountController {
     public ResponseEntity<String> transferMoney(@RequestParam Integer accountID_1, @RequestParam Integer accountID_2,@RequestParam double amount) {
         return this.bankAccountService.transferMoney(accountID_1, accountID_2 , amount);
     }
-    
 }
