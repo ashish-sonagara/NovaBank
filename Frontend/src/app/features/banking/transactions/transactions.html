@@ -1,53 +1,40 @@
-<!-- TRANSACTIONS PAGE -->
-<div class="page-panel" id="panel-transactions">
-  <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 14px">
+<div class="page-panel active" id="panel-transactions">
+  
+  <div class="view-header-description">
     Full transaction history — all deposits, withdrawals, and transfers
   </div>
-  <div class="tx-filters">
-    <button class="filter-btn active">All</button>
-    <button class="filter-btn" onclick="activateFilter(this)">Deposits</button>
-    <button class="filter-btn" onclick="activateFilter(this)">Withdrawals</button>
-    <button class="filter-btn" onclick="activateFilter(this)">Transfers</button>
-    <input
-      type="date"
-      style="
-        height: 34px;
-        border: 0.5px solid var(--border);
-        border-radius: 8px;
-        padding: 0 10px;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 13px;
-        background: white;
-        outline: none;
-        color: var(--text-secondary);
-      "
-    />
-    <div class="search-bar">
-      <i class="ti ti-search si" aria-hidden="true"></i>
-      <input placeholder="Search by ID or account..." />
+
+  <div class="tx-filters-management-bar">
+    <div class="filter-chips-group">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Deposits</button>
+      <button class="filter-btn">Withdrawals</button>
+      <button class="filter-btn">Transfers</button>
     </div>
-    <select
-      style="
-        height: 34px;
-        border: 0.5px solid var(--border);
-        border-radius: 8px;
-        padding: 0 10px;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 13px;
-        background: white;
-        outline: none;
-        color: var(--text-secondary);
-      "
-    >
-      <option>Last 10</option>
-      <option>Last 20</option>
-      <option>Last 50</option>
-      <option>All</option>
-    </select>
+
+    <div class="filter-controls-inputs-group">
+      <div class="date-picker-wrapper">
+        <input type="date" class="control-date-input" aria-label="Filter by date" />
+      </div>
+
+      <div class="search-bar-wrapper">
+        <i class="ti ti-search search-icon-indicator" aria-hidden="true"></i>
+        <input type="text" class="control-search-input" placeholder="Search by ID or account..." />
+      </div>
+
+      <div class="select-limit-wrapper">
+        <select class="control-select-dropdown" aria-label="Rows page limit selection">
+          <option>Last 10</option>
+          <option>Last 20</option>
+          <option>Last 50</option>
+          <option>All</option>
+        </select>
+      </div>
+    </div>
   </div>
 
   <div class="tx-table-wrap">
-    <table>
+    <table class="banking-data-table">
       <thead>
         <tr>
           <th>Tx ID</th>
@@ -60,121 +47,74 @@
       </thead>
       <tbody>
         <tr>
-          <td class="mono" style="color: var(--text-muted)">TXN-9821</td>
+          <td class="mono font-muted">TXN-9821</td>
           <td>
-            <span
-              style="
-                display: inline-flex;
-                align-items: center;
-                gap: 4px;
-                font-size: 11.5px;
-                color: var(--success);
-                font-weight: 500;
-              "
-              ><i class="ti ti-arrow-down" aria-hidden="true"></i> Deposit</span
-            >
+            <span class="tx-type-indicator inline-pos">
+              <i class="ti ti-arrow-down" aria-hidden="true"></i> Deposit
+            </span>
           </td>
           <td class="mono">#1042</td>
-          <td class="mono" style="color: var(--success); font-weight: 600">+₹25,000</td>
-          <td style="font-size: 12px; color: var(--text-secondary)">07 Jun 2025, 10:24 AM</td>
+          <td class="mono value-pos font-bold">+₹25,000</td>
+          <td class="timestamp-cell">07 Jun 2025, 10:24 AM</td>
           <td><span class="status-pill pill-active">Success</span></td>
         </tr>
+        
         <tr>
-          <td class="mono" style="color: var(--text-muted)">TXN-9820</td>
+          <td class="mono font-muted">TXN-9820</td>
           <td>
-            <span
-              style="
-                display: inline-flex;
-                align-items: center;
-                gap: 4px;
-                font-size: 11.5px;
-                color: var(--danger);
-                font-weight: 500;
-              "
-              ><i class="ti ti-arrow-up" aria-hidden="true"></i> Withdrawal</span
-            >
+            <span class="tx-type-indicator inline-neg">
+              <i class="ti ti-arrow-up" aria-hidden="true"></i> Withdrawal
+            </span>
           </td>
           <td class="mono">#2091</td>
-          <td class="mono" style="color: var(--danger); font-weight: 600">-₹8,500</td>
-          <td style="font-size: 12px; color: var(--text-secondary)">07 Jun 2025, 09:51 AM</td>
+          <td class="mono value-neg font-bold">-₹8,500</td>
+          <td class="timestamp-cell">07 Jun 2025, 09:51 AM</td>
           <td><span class="status-pill pill-active">Success</span></td>
         </tr>
+        
         <tr>
-          <td class="mono" style="color: var(--text-muted)">TXN-9819</td>
+          <td class="mono font-muted">TXN-9819</td>
           <td>
-            <span
-              style="
-                display: inline-flex;
-                align-items: center;
-                gap: 4px;
-                font-size: 11.5px;
-                color: var(--accent);
-                font-weight: 500;
-              "
-              ><i class="ti ti-arrows-exchange" aria-hidden="true"></i> Transfer</span
-            >
+            <span class="tx-type-indicator inline-accent">
+              <i class="ti ti-arrows-exchange" aria-hidden="true"></i> Transfer
+            </span>
           </td>
           <td class="mono">#1042 → #3017</td>
-          <td class="mono" style="color: var(--danger); font-weight: 600">-₹50,000</td>
-          <td style="font-size: 12px; color: var(--text-secondary)">07 Jun 2025, 09:11 AM</td>
+          <td class="mono value-neg font-bold">-₹50,000</td>
+          <td class="timestamp-cell">07 Jun 2025, 09:11 AM</td>
           <td><span class="status-pill pill-active">Success</span></td>
         </tr>
+        
         <tr>
-          <td class="mono" style="color: var(--text-muted)">TXN-9818</td>
+          <td class="mono font-muted">TXN-9818</td>
           <td>
-            <span
-              style="
-                display: inline-flex;
-                align-items: center;
-                gap: 4px;
-                font-size: 11.5px;
-                color: var(--success);
-                font-weight: 500;
-              "
-              ><i class="ti ti-arrow-down" aria-hidden="true"></i> Deposit</span
-            >
+            <span class="tx-type-indicator inline-pos">
+              <i class="ti ti-arrow-down" aria-hidden="true"></i> Deposit
+            </span>
           </td>
           <td class="mono">#0917</td>
-          <td class="mono" style="color: var(--success); font-weight: 600">+₹1,20,000</td>
-          <td style="font-size: 12px; color: var(--text-secondary)">06 Jun 2025, 04:30 PM</td>
+          <td class="mono value-pos font-bold">+₹1,20,000</td>
+          <td class="timestamp-cell">06 Jun 2025, 04:30 PM</td>
           <td><span class="status-pill pill-active">Success</span></td>
         </tr>
+        
         <tr>
-          <td class="mono" style="color: var(--text-muted)">TXN-9817</td>
+          <td class="mono font-muted">TXN-9817</td>
           <td>
-            <span
-              style="
-                display: inline-flex;
-                align-items: center;
-                gap: 4px;
-                font-size: 11.5px;
-                color: var(--danger);
-                font-weight: 500;
-              "
-              ><i class="ti ti-arrow-up" aria-hidden="true"></i> Withdrawal</span
-            >
+            <span class="tx-type-indicator inline-neg">
+              <i class="ti ti-arrow-up" aria-hidden="true"></i> Withdrawal
+            </span>
           </td>
           <td class="mono">#3017</td>
-          <td class="mono" style="color: var(--danger); font-weight: 600">-₹15,000</td>
-          <td style="font-size: 12px; color: var(--text-secondary)">06 Jun 2025, 02:15 PM</td>
-          <td>
-            <span
-              style="
-                font-size: 11px;
-                font-weight: 500;
-                padding: 3px 9px;
-                border-radius: 20px;
-                background: rgba(245, 158, 11, 0.1);
-                color: var(--warning);
-              "
-              >Pending</span
-            >
-          </td>
+          <td class="mono value-neg font-bold">-₹15,000</td>
+          <td class="timestamp-cell">06 Jun 2025, 02:15 PM</td>
+          <td><span class="status-pill pill-pending">Pending</span></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div style="margin-top: 10px; font-size: 12px; color: var(--text-secondary)">
+
+  <div class="view-footer-counter">
     Showing last 5 of 9,821 transactions
   </div>
 </div>

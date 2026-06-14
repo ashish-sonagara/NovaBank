@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -7,16 +8,27 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
-export class Header implements OnInit{
+export class Header implements OnInit {
 
   pageTitle = 'Dashboard';
- 
+
   constructor(
     private router: Router,
-    private route : ActivatedRoute
-  ) {}
- 
+    private route: ActivatedRoute
+  ) { }
+
   ngOnInit(): void {
-    this.pageTitle = this.route.snapshot.data['title']
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    )
+      .subscribe(() => {
+        let route = this.route
+
+        while (route.firstChild) {
+          route = route.firstChild
+        }
+
+        this.pageTitle = route.snapshot.data['title']
+      })
   }
 }

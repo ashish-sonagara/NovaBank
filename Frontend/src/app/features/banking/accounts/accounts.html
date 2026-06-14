@@ -1,99 +1,197 @@
- <!-- ACCOUNTS PAGE -->
-      <div class="page-panel" id="panel-accounts">
-        <div class="accounts-header">
-          <div>
-            <div style="font-size:13px; color:var(--text-secondary);">Manage all bank accounts — create, update, delete</div>
-          </div>
-          <button class="btn-add" onclick="openModal('modal-create-account')">
-            <i class="ti ti-plus" aria-hidden="true"></i> New Account
-          </button>
-        </div>
+<div class="page-panel active" id="panel-accounts">
+  
+  <div class="accounts-header">
+    <div class="header-titles">
+      <p class="view-subtitle">Manage all bank accounts — create, update, delete</p>
+    </div>
+    <button class="btn-add" (click)="openCreateAccount()">
+      <i class="ti ti-plus" aria-hidden="true"></i> New Account
+    </button>
+  </div>
 
-        <div style="display:flex; gap:8px; margin-bottom:12px;">
-          <div style="position:relative; flex:1; max-width:260px;">
-            <i class="ti ti-search" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); color:var(--text-muted); font-size:15px;" aria-hidden="true"></i>
-            <input style="width:100%; height:34px; border:0.5px solid var(--border); border-radius:8px; padding:0 10px 0 32px; font-family:'DM Sans',sans-serif; font-size:13px; background:white; outline:none;" placeholder="Search accounts..." />
-          </div>
-          <select style="height:34px; border:0.5px solid var(--border); border-radius:8px; padding:0 10px; font-family:'DM Sans',sans-serif; font-size:13px; background:white; outline:none; color:var(--text-secondary);">
-            <option>All Types</option>
-            <option>Savings</option>
-            <option>Current</option>
-            <option>Fixed Deposit</option>
-          </select>
-        </div>
+  <div class="filter-ribbon">
+    <div class="search-box-wrapper">
+      <i class="ti ti-search search-icon" aria-hidden="true"></i>
+      <input type="text" class="search-input" placeholder="Search accounts..." />
+    </div>
+    <div class="select-box-wrapper">
+      <select class="filter-select">
+        <option>All Types</option>
+        <option>Savings</option>
+        <option>Current</option>
+        <option>Fixed Deposit</option>
+      </select>
+    </div>
+  </div>
 
-        <div class="accounts-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Account Holder</th>
-                <th>Account No.</th>
-                <th>Type</th>
-                <th>Balance</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="accounts-tbody">
-              <tr>
-                <td><div class="acc-name-cell"><div class="acc-avatar">RK</div><div><div style="font-weight:500;">Ramesh Kumar</div><div style="font-size:11px; color:var(--text-muted);">ramesh@email.com</div></div></div></td>
-                <td class="mono">#1042</td>
-                <td><span class="acc-type-tag">SAVINGS</span></td>
-                <td class="mono" style="font-weight:500;">₹2,48,500</td>
-                <td><span class="status-pill pill-active">Active</span></td>
-                <td><div class="tbl-actions">
-                  <button class="btn-tbl" title="View" onclick="openModal('modal-view-account')"><i class="ti ti-eye" aria-hidden="true"></i></button>
-                  <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
-                  <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
-                </div></td>
-              </tr>
-              <tr>
-                <td><div class="acc-name-cell"><div class="acc-avatar" style="background:var(--navy-light);">PS</div><div><div style="font-weight:500;">Priya Sharma</div><div style="font-size:11px; color:var(--text-muted);">priya.s@email.com</div></div></div></td>
-                <td class="mono">#2091</td>
-                <td><span class="acc-type-tag">CURRENT</span></td>
-                <td class="mono" style="font-weight:500;">₹84,200</td>
-                <td><span class="status-pill pill-active">Active</span></td>
-                <td><div class="tbl-actions">
-                  <button class="btn-tbl" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
-                  <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
-                  <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
-                </div></td>
-              </tr>
-              <tr>
-                <td><div class="acc-name-cell"><div class="acc-avatar" style="background:#3B4BAD;">AM</div><div><div style="font-weight:500;">Aarav Mehta</div><div style="font-size:11px; color:var(--text-muted);">aarav.m@email.com</div></div></div></td>
-                <td class="mono">#3017</td>
-                <td><span class="acc-type-tag">FD</span></td>
-                <td class="mono" style="font-weight:500;">₹5,00,000</td>
-                <td><span class="status-pill pill-active">Active</span></td>
-                <td><div class="tbl-actions">
-                  <button class="btn-tbl" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
-                  <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
-                  <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
-                </div></td>
-              </tr>
-              <tr>
-                <td><div class="acc-name-cell"><div class="acc-avatar" style="background:#6B4E9A;">SV</div><div><div style="font-weight:500;">Sneha Verma</div><div style="font-size:11px; color:var(--text-muted);">sneha.v@email.com</div></div></div></td>
-                <td class="mono">#0917</td>
-                <td><span class="acc-type-tag">SAVINGS</span></td>
-                <td class="mono" style="font-weight:500;">₹1,12,000</td>
-                <td><span class="status-pill pill-inactive">Inactive</span></td>
-                <td><div class="tbl-actions">
-                  <button class="btn-tbl" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
-                  <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
-                  <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
-                </div></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="accounts-table-viewport">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Account Type</th>
+          <th>Bank</th>
+          <th>Account No.</th>
+          <th>Balance</th>
+          <th>Status</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="accounts-tbody">
+        <tr>
+          <td><span class="acc-type-tag type-savings">Savings</span></td>
+          <td><span class="bank-label">SBI</span></td>
+          <td class="mono">XXXX1042</td>
+          <td class="mono font-semibold">₹2,48,500</td>
+          <td><span class="status-pill pill-active">Active</span></td>
+          <td>
+            <div class="tbl-actions">
+              <button class="btn-tbl" title="View" onclick="openModal('modal-view-account')"><i class="ti ti-eye" aria-hidden="true"></i></button>
+              <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
+              <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="acc-type-tag type-current">Current</span></td>
+          <td><span class="bank-label">HDFC</span></td>
+          <td class="mono">XXXX2091</td>
+          <td class="mono font-semibold">₹84,200</td>
+          <td><span class="status-pill pill-active">Active</span></td>
+          <td>
+            <div class="tbl-actions">
+              <button class="btn-tbl" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+              <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
+              <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="acc-type-tag type-fd">FD</span></td>
+          <td><span class="bank-label">BOI</span></td>
+          <td class="mono">FD3017</td>
+          <td class="mono font-semibold">₹5,00,000</td>
+          <td><span class="status-pill pill-active">Active</span></td>
+          <td>
+            <div class="tbl-actions">
+              <button class="btn-tbl" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+              <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
+              <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="acc-type-tag type-savings">Savings</span></td>
+          <td><span class="bank-label">SBI</span></td>
+          <td class="mono">XXXX0917</td>
+          <td class="mono font-semibold">₹1,12,000</td>
+          <td><span class="status-pill pill-inactive">Inactive</span></td>
+          <td>
+            <div class="tbl-actions">
+              <button class="btn-tbl" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+              <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
+              <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:12px; font-size:12px; color:var(--text-secondary);">
-          <span>Showing 4 of 2,481 accounts</span>
-          <div style="display:flex; gap:4px;">
-            <button style="height:30px; padding:0 10px; border:0.5px solid var(--border); border-radius:6px; background:none; cursor:pointer; font-size:12px; color:var(--text-secondary);">← Prev</button>
-            <button style="height:30px; padding:0 10px; border:0.5px solid var(--navy); border-radius:6px; background:var(--navy); cursor:pointer; font-size:12px; color:white;">1</button>
-            <button style="height:30px; padding:0 10px; border:0.5px solid var(--border); border-radius:6px; background:none; cursor:pointer; font-size:12px; color:var(--text-secondary);">2</button>
-            <button style="height:30px; padding:0 10px; border:0.5px solid var(--border); border-radius:6px; background:none; cursor:pointer; font-size:12px; color:var(--text-secondary);">Next →</button>
-          </div>
-        </div>
+  <div class="table-pagination-footer">
+    <span class="pagination-counter">Showing 4 of 2,481 accounts</span>
+    <div class="pagination-nav-group">
+      <button class="btn-page-nav">← Prev</button>
+      <button class="btn-page-nav current-page">1</button>
+      <button class="btn-page-nav">2</button>
+      <button class="btn-page-nav">Next →</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-create-account" role="dialog" aria-modal="true" aria-labelledby="modal-title" [class.active]="isModalOpen">
+  <div class="modal-card">
+    
+    <div class="modal-header">
+      <div class="modal-header-titles">
+        <h2 class="modal-title" id="modal-title">Create New Account</h2>
+        <p class="modal-subtitle">Register a new customer account within the bank system architecture.</p>
       </div>
+      <button class="btn-modal-close" (click)="onCloseAccount()" aria-label="Close modal">
+        <i class="ti ti-x" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <form class="modal-form" onsubmit="event.preventDefault();">
+      <div class="modal-form-scroll-body">
+        
+        <div class="form-grid-row cols-2">
+          <div class="form-field-group">
+            <label class="form-label" for="acc-holder-name">Account Holder Name</label>
+            <input type="text" id="acc-holder-name" class="form-input" placeholder="e.g. Ramesh Kumar" required />
+          </div>
+          <div class="form-field-group">
+            <label class="form-label" for="acc-email">Email Address</label>
+            <input type="email" id="acc-email" class="form-input" placeholder="e.g. ramesh@email.com" required />
+          </div>
+        </div>
+
+        <div class="form-grid-row cols-2">
+          <div class="form-field-group">
+            <label class="form-label" for="acc-bank">Select Bank</label>
+            <div class="select-field-wrapper">
+              <select id="acc-bank" class="form-select" required>
+                <option value="" disabled selected>Choose institutional branch...</option>
+                <option value="SBI">State Bank of India (SBI)</option>
+                <option value="HDFC">HDFC Bank</option>
+                <option value="BOI">Bank of India (BOI)</option>
+                <option value="ICICI">ICICI Bank</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field-group">
+            <label class="form-label" for="acc-type">Account Type</label>
+            <div class="select-field-wrapper">
+              <select id="acc-type" class="form-select" required>
+                <option value="" disabled selected>Choose account layout...</option>
+                <option value="SAVINGS">Savings Account</option>
+                <option value="CURRENT">Current Account</option>
+                <option value="FD">Fixed Deposit (FD)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-grid-row cols-2">
+          <div class="form-field-group">
+            <label class="form-label" for="acc-number">Account Number</label>
+            <input type="text" id="acc-number" class="form-input mono" placeholder="e.g. XXXX1042" required />
+          </div>
+          <div class="form-field-group">
+            <label class="form-label" for="acc-balance">Initial Deposit Amount (INR)</label>
+            <div class="input-currency-wrapper">
+              <span class="currency-prefix">₹</span>
+              <input type="number" id="acc-balance" class="form-input prefix-spaced font-semibold" placeholder="0.00" min="0" step="0.01" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field-group">
+          <label class="form-label" for="acc-status">Initial Status</label>
+          <div class="select-field-wrapper">
+            <select id="acc-status" class="form-select" required>
+              <option value="ACTIVE" selected>Active (Deploy Immediately)</option>
+              <option value="INACTIVE">Inactive (Hold Configuration)</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-secondary" onclick="closeModal('modal-create-account')">Cancel</button>
+        <button type="submit" class="btn-modal-primary">Register Account</button>
+      </div>
+    </form>
+
+  </div>
+</div>

@@ -6,4 +6,15 @@ import { Component } from '@angular/core';
   templateUrl: './accounts.html',
   styleUrl: './accounts.scss',
 })
-export class Accounts {}
+export class Accounts {
+
+isModalOpen = false;
+
+  openCreateAccount() {
+    this.isModalOpen = true;
+  }
+
+  onCloseAccount(){
+    this.isModalOpen = false
+  }
+}
