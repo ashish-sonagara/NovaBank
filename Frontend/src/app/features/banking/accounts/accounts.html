@@ -1,1 +1,99 @@
-<p>accounts works!</p>
+ <!-- ACCOUNTS PAGE -->
+      <div class="page-panel" id="panel-accounts">
+        <div class="accounts-header">
+          <div>
+            <div style="font-size:13px; color:var(--text-secondary);">Manage all bank accounts — create, update, delete</div>
+          </div>
+          <button class="btn-add" onclick="openModal('modal-create-account')">
+            <i class="ti ti-plus" aria-hidden="true"></i> New Account
+          </button>
+        </div>
+
+        <div style="display:flex; gap:8px; margin-bottom:12px;">
+          <div style="position:relative; flex:1; max-width:260px;">
+            <i class="ti ti-search" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); color:var(--text-muted); font-size:15px;" aria-hidden="true"></i>
+            <input style="width:100%; height:34px; border:0.5px solid var(--border); border-radius:8px; padding:0 10px 0 32px; font-family:'DM Sans',sans-serif; font-size:13px; background:white; outline:none;" placeholder="Search accounts..." />
+          </div>
+          <select style="height:34px; border:0.5px solid var(--border); border-radius:8px; padding:0 10px; font-family:'DM Sans',sans-serif; font-size:13px; background:white; outline:none; color:var(--text-secondary);">
+            <option>All Types</option>
+            <option>Savings</option>
+            <option>Current</option>
+            <option>Fixed Deposit</option>
+          </select>
+        </div>
+
+        <div class="accounts-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Account Holder</th>
+                <th>Account No.</th>
+                <th>Type</th>
+                <th>Balance</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="accounts-tbody">
+              <tr>
+                <td><div class="acc-name-cell"><div class="acc-avatar">RK</div><div><div style="font-weight:500;">Ramesh Kumar</div><div style="font-size:11px; color:var(--text-muted);">ramesh@email.com</div></div></div></td>
+                <td class="mono">#1042</td>
+                <td><span class="acc-type-tag">SAVINGS</span></td>
+                <td class="mono" style="font-weight:500;">₹2,48,500</td>
+                <td><span class="status-pill pill-active">Active</span></td>
+                <td><div class="tbl-actions">
+                  <button class="btn-tbl" title="View" onclick="openModal('modal-view-account')"><i class="ti ti-eye" aria-hidden="true"></i></button>
+                  <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
+                  <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><div class="acc-name-cell"><div class="acc-avatar" style="background:var(--navy-light);">PS</div><div><div style="font-weight:500;">Priya Sharma</div><div style="font-size:11px; color:var(--text-muted);">priya.s@email.com</div></div></div></td>
+                <td class="mono">#2091</td>
+                <td><span class="acc-type-tag">CURRENT</span></td>
+                <td class="mono" style="font-weight:500;">₹84,200</td>
+                <td><span class="status-pill pill-active">Active</span></td>
+                <td><div class="tbl-actions">
+                  <button class="btn-tbl" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+                  <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
+                  <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><div class="acc-name-cell"><div class="acc-avatar" style="background:#3B4BAD;">AM</div><div><div style="font-weight:500;">Aarav Mehta</div><div style="font-size:11px; color:var(--text-muted);">aarav.m@email.com</div></div></div></td>
+                <td class="mono">#3017</td>
+                <td><span class="acc-type-tag">FD</span></td>
+                <td class="mono" style="font-weight:500;">₹5,00,000</td>
+                <td><span class="status-pill pill-active">Active</span></td>
+                <td><div class="tbl-actions">
+                  <button class="btn-tbl" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+                  <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
+                  <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><div class="acc-name-cell"><div class="acc-avatar" style="background:#6B4E9A;">SV</div><div><div style="font-weight:500;">Sneha Verma</div><div style="font-size:11px; color:var(--text-muted);">sneha.v@email.com</div></div></div></td>
+                <td class="mono">#0917</td>
+                <td><span class="acc-type-tag">SAVINGS</span></td>
+                <td class="mono" style="font-weight:500;">₹1,12,000</td>
+                <td><span class="status-pill pill-inactive">Inactive</span></td>
+                <td><div class="tbl-actions">
+                  <button class="btn-tbl" title="View"><i class="ti ti-eye" aria-hidden="true"></i></button>
+                  <button class="btn-tbl" title="Edit" onclick="openModal('modal-edit-account')"><i class="ti ti-edit" aria-hidden="true"></i></button>
+                  <button class="btn-tbl danger" title="Delete" onclick="openModal('modal-delete-confirm')"><i class="ti ti-trash" aria-hidden="true"></i></button>
+                </div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:12px; font-size:12px; color:var(--text-secondary);">
+          <span>Showing 4 of 2,481 accounts</span>
+          <div style="display:flex; gap:4px;">
+            <button style="height:30px; padding:0 10px; border:0.5px solid var(--border); border-radius:6px; background:none; cursor:pointer; font-size:12px; color:var(--text-secondary);">← Prev</button>
+            <button style="height:30px; padding:0 10px; border:0.5px solid var(--navy); border-radius:6px; background:var(--navy); cursor:pointer; font-size:12px; color:white;">1</button>
+            <button style="height:30px; padding:0 10px; border:0.5px solid var(--border); border-radius:6px; background:none; cursor:pointer; font-size:12px; color:var(--text-secondary);">2</button>
+            <button style="height:30px; padding:0 10px; border:0.5px solid var(--border); border-radius:6px; background:none; cursor:pointer; font-size:12px; color:var(--text-secondary);">Next →</button>
+          </div>
+        </div>
+      </div>

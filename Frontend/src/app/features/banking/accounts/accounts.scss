@@ -1,0 +1,161 @@
+
+  /* ACCOUNTS */
+  .accounts-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+
+  .btn-add {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-add:hover { background: var(--navy-light); }
+
+  .accounts-table {
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    text-align: left;
+    padding: 10px 16px;
+    background: var(--surface);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  td { padding: 11px 16px; font-size: 13px; color: var(--text-primary); border-bottom: 0.5px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(59,110,232,0.02); }
+
+  .acc-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .acc-name-cell { display: flex; align-items: center; gap: 9px; }
+  .status-pill { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; }
+  .pill-active { background: rgba(16,185,129,0.1); color: var(--success); }
+  .pill-inactive { background: rgba(107,114,128,0.12); color: var(--text-secondary); }
+
+  .tbl-actions { display: flex; align-items: center; gap: 6px; }
+  .btn-tbl {
+    font-size: 14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 0.5px solid var(--border);
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+  }
+  .btn-tbl:hover { background: var(--surface2); color: var(--text-primary); }
+  .btn-tbl.danger:hover { background: rgba(239,68,68,0.08); color: var(--danger); border-color: rgba(239,68,68,0.2); }
+
+  .acc-type-tag { font-size: 11px; color: var(--text-secondary); font-family: 'DM Mono', monospace; }
+  .mono { font-family: 'DM Mono', monospace; font-size: 12.5px; }
+
+  /* ATM / SERVICES */
+  .atm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .service-card {
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .service-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .service-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .icon-deposit { background: rgba(16,185,129,0.1); color: var(--success); }
+  .icon-withdraw { background: rgba(239,68,68,0.1); color: var(--danger); }
+  .icon-transfer { background: rgba(59,110,232,0.1); color: var(--accent); }
+  .icon-history { background: rgba(212,168,67,0.15); color: var(--gold); }
+
+  .service-card-title { font-size: 14px; font-weight: 600; }
+  .service-card-sub { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form-row-full { margin-bottom: 10px; }
+
+  .form-input-sm {
+    width: 100%;
+    height: 36px;
+    border: 0.5px solid var(--border);
+    border-radius: 7px;
+    padding: 0 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text-primary);
+    background: var(--surface);
+    outline: none;
+  }
+
+  .form-input-sm:focus { border-color: var(--accent); background: white; }
+
+  .btn-service {
+    width: 100%;
+    height: 36px;
+    border: none;
+    border-radius: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .btn-deposit { background: var(--success); color: white; }
+  .btn-deposit:hover { background: #0a9e6a; }
+  .btn-withdraw { background: var(--danger); color: white; }
+  .btn-withdraw:hover { background: #d73232; }
+  .btn-transfer { background: var(--accent); color: white; }
+  .btn-transfer:hover { background: #2857d4; }

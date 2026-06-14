@@ -18,7 +18,8 @@ export class Signin implements OnInit{
     
   }
 
-  routeToDashBoard(){
-    // this.route.navigateByUrl('./')
+  routeToApp(){
+    console.log("happy to listen")
+    this.route.navigateByUrl('/app/dashboard')
   }
 }

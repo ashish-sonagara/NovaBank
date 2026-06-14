@@ -1,6 +1,7 @@
 /* SIDEBAR */
 .sidebar {
-  width: var(--sidebar-w);
+  width: 100%;
+  height: 100%;
   background: var(--navy);
   display: flex;
   flex-direction: column;
@@ -9,8 +10,8 @@
 }
 
 .sidebar-brand {
-  padding: 20px 20px 16px;
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+  padding: 20px 20px;
+  border-bottom: 0.1rem solid rgba(255, 255, 255, 0.08);
 }
 
 .brand-logo {
@@ -53,26 +54,27 @@
 }
 
 .nav-section-label {
-  font-size: 10px;
+  font-size: 0.75rem;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
-  padding: 8px 8px 4px;
-  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 8px 8px;
+  margin-top: 0.7rem;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 9px 10px;
+  gap: 0.5rem;
+  padding: 0.6rem;
   border-radius: 8px;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.55);
-  font-size: 13.5px;
+  font-size: 1rem;
   font-weight: 400;
-  transition: all 0.15s;
-  margin-bottom: 2px;
+  transition: all 0.1s;
+  margin-bottom: 0.3rem;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -81,13 +83,13 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
-.nav-item.active {
+.nav-item.active-class {
   background: rgba(59, 110, 232, 0.25);
   color: var(--accent-bright);
   font-weight: 500;
 }
 
-.nav-item.active .nav-icon {
+.nav-item.active-class .nav-icon {
   color: var(--accent-bright);
 }
 
@@ -99,8 +101,8 @@
 }
 
 .sidebar-footer {
-  padding: 12px;
-  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 12px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.1);
 }
 
 .user-card {
@@ -117,8 +119,8 @@
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--gold), var(--gold-light));
   display: flex;
@@ -134,15 +136,17 @@
   flex: 1;
   min-width: 0;
 }
+
 .user-name {
-  font-size: 12.5px;
+  font-size: 0.8rem;
   color: white;
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .user-role {
-  font-size: 11px;
+  font-size: 0.75;
   color: rgba(255, 255, 255, 0.35);
 }

@@ -12,37 +12,37 @@
 
   <div class="sidebar-nav">
     <div class="nav-section-label">Overview</div>
-    <div class="nav-item active" onclick="navTo('dashboard', this)">
+    <div class="nav-item" routerLink="/app/dashboard" routerLinkActive="active-class">
       <i class="ti ti-layout-dashboard nav-icon" aria-hidden="true"></i> Dashboard
     </div>
 
     <div class="nav-section-label">Banking</div>
-    <div class="nav-item" onclick="navTo('accounts', this)">
+    <div class="nav-item" routerLink="/app/accounts" routerLinkActive="active-class">
       <i class="ti ti-credit-card nav-icon" aria-hidden="true"></i> Accounts
     </div>
-    <div class="nav-item" onclick="navTo('transactions', this)">
+    <div class="nav-item" routerLink="/app/transactions" routerLinkActive="active-class">
       <i class="ti ti-list nav-icon" aria-hidden="true"></i> Transactions
     </div>
-    <div class="nav-item" onclick="navTo('atm', this)">
+    <div class="nav-item" routerLink="/app/atm-services" routerLinkActive="active-class">
       <i class="ti ti-receipt nav-icon" aria-hidden="true"></i> ATM Services
     </div>
-    <div class="nav-item" onclick="navTo('transfer', this)">
+    <div class="nav-item" routerLink="/app/fund-transfer" routerLinkActive="active-class">
       <i class="ti ti-arrows-exchange nav-icon" aria-hidden="true"></i> Fund Transfer
     </div>
 
     <div class="nav-section-label">Reports</div>
-    <div class="nav-item" onclick="navTo('reports', this)">
+    <div class="nav-item" routerLink="/app/analytics" routerLinkActive="active-class">
       <i class="ti ti-chart-bar nav-icon" aria-hidden="true"></i> Analytics
     </div>
 
     <div class="nav-section-label">Settings</div>
-    <div class="nav-item" onclick="navTo('settings', this)">
+    <div class="nav-item" routerLink="/app/settings" routerLinkActive="active-class">
       <i class="ti ti-settings nav-icon" aria-hidden="true"></i> Settings
     </div>
   </div>
 
   <div class="sidebar-footer">
-    <div class="user-card" onclick="doLogout()">
+    <div class="user-card" (click)="onLogOut()">
       <div class="user-avatar">AK</div>
       <div class="user-info">
         <div class="user-name">Ashish Kumar</div>
@@ -50,7 +50,7 @@
       </div>
       <i
         class="ti ti-logout"
-        style="color: rgba(255, 255, 255, 0.3); font-size: 15px"
+        style="color: rgba(255, 255, 255, 0.3); font-size: 20px"
         aria-hidden="true"
       ></i>
     </div>

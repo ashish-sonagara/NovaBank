@@ -1,1 +1,177 @@
-<p>dashboard works!</p>
+<!-- DASHBOARD -->
+      <div class="page-panel active" id="panel-dashboard">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon-row">
+              <i class="ti ti-users stat-icon" style="color:var(--accent);" aria-hidden="true"></i>
+              <span class="stat-badge badge-info">+12%</span>
+            </div>
+            <div class="stat-value">2,481</div>
+            <div class="stat-label">Total Accounts</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-row">
+              <i class="ti ti-arrow-down stat-icon" style="color:var(--success);" aria-hidden="true"></i>
+              <span class="stat-badge badge-success">+8.3%</span>
+            </div>
+            <div class="stat-value">₹4.2Cr</div>
+            <div class="stat-label">Total Deposits</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-row">
+              <i class="ti ti-arrow-up stat-icon" style="color:var(--danger);" aria-hidden="true"></i>
+              <span class="stat-badge badge-danger">-3.1%</span>
+            </div>
+            <div class="stat-value">₹1.7Cr</div>
+            <div class="stat-label">Total Withdrawals</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-row">
+              <i class="ti ti-arrows-exchange stat-icon" style="color:var(--gold);" aria-hidden="true"></i>
+              <span class="stat-badge badge-warn">Today</span>
+            </div>
+            <div class="stat-value">348</div>
+            <div class="stat-label">Transactions Today</div>
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Recent Transactions</span>
+              <span class="card-action" onclick="navTo('transactions', document.querySelector('[onclick*=transactions]'))">View all →</span>
+            </div>
+            <div>
+              <div class="tx-row">
+                <div class="tx-icon deposit"><i class="ti ti-arrow-down" aria-hidden="true"></i></div>
+                <div class="tx-info">
+                  <div class="tx-title">Deposit — Acc #1042</div>
+                  <div class="tx-sub">Today, 10:24 AM</div>
+                </div>
+                <div class="tx-amount pos">+₹25,000</div>
+              </div>
+              <div class="tx-row">
+                <div class="tx-icon withdraw"><i class="ti ti-arrow-up" aria-hidden="true"></i></div>
+                <div class="tx-info">
+                  <div class="tx-title">Withdrawal — Acc #2091</div>
+                  <div class="tx-sub">Today, 09:51 AM</div>
+                </div>
+                <div class="tx-amount neg">-₹8,500</div>
+              </div>
+              <div class="tx-row">
+                <div class="tx-icon transfer"><i class="ti ti-arrows-exchange" aria-hidden="true"></i></div>
+                <div class="tx-info">
+                  <div class="tx-title">Transfer #1042 → #3017</div>
+                  <div class="tx-sub">Today, 09:11 AM</div>
+                </div>
+                <div class="tx-amount neg">-₹50,000</div>
+              </div>
+              <div class="tx-row">
+                <div class="tx-icon deposit"><i class="ti ti-arrow-down" aria-hidden="true"></i></div>
+                <div class="tx-info">
+                  <div class="tx-title">Deposit — Acc #0917</div>
+                  <div class="tx-sub">Yesterday, 4:30 PM</div>
+                </div>
+                <div class="tx-amount pos">+₹1,20,000</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Activity (7 days)</span>
+              <span style="font-size:11px; color:var(--text-muted);">Deposits vs Withdrawals</span>
+            </div>
+            <div style="display:flex; gap:12px; margin-bottom:12px;">
+              <div style="display:flex; align-items:center; gap:5px; font-size:11.5px; color:var(--text-secondary);">
+                <div style="width:10px; height:10px; background:var(--accent); border-radius:2px;"></div> Deposits
+              </div>
+              <div style="display:flex; align-items:center; gap:5px; font-size:11.5px; color:var(--text-secondary);">
+                <div style="width:10px; height:10px; background:var(--gold); border-radius:2px;"></div> Withdrawals
+              </div>
+            </div>
+            <div style="display:flex; align-items:flex-end; gap:5px; height:80px;">
+              <div style="flex:1; display:flex; flex-direction:column; gap:2px; align-items:center; height:100%;">
+                <div style="flex:1; display:flex; align-items:flex-end; gap:2px; width:100%;">
+                  <div style="flex:1; background:var(--accent); border-radius:2px 2px 0 0; height:55%; opacity:0.8;"></div>
+                  <div style="flex:1; background:var(--gold); border-radius:2px 2px 0 0; height:30%; opacity:0.8;"></div>
+                </div>
+                <div style="font-size:9px; color:var(--text-muted);">Mon</div>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:2px; align-items:center; height:100%;">
+                <div style="flex:1; display:flex; align-items:flex-end; gap:2px; width:100%;">
+                  <div style="flex:1; background:var(--accent); border-radius:2px 2px 0 0; height:75%; opacity:0.8;"></div>
+                  <div style="flex:1; background:var(--gold); border-radius:2px 2px 0 0; height:45%; opacity:0.8;"></div>
+                </div>
+                <div style="font-size:9px; color:var(--text-muted);">Tue</div>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:2px; align-items:center; height:100%;">
+                <div style="flex:1; display:flex; align-items:flex-end; gap:2px; width:100%;">
+                  <div style="flex:1; background:var(--accent); border-radius:2px 2px 0 0; height:40%; opacity:0.8;"></div>
+                  <div style="flex:1; background:var(--gold); border-radius:2px 2px 0 0; height:60%; opacity:0.8;"></div>
+                </div>
+                <div style="font-size:9px; color:var(--text-muted);">Wed</div>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:2px; align-items:center; height:100%;">
+                <div style="flex:1; display:flex; align-items:flex-end; gap:2px; width:100%;">
+                  <div style="flex:1; background:var(--accent); border-radius:2px 2px 0 0; height:90%; opacity:0.8;"></div>
+                  <div style="flex:1; background:var(--gold); border-radius:2px 2px 0 0; height:35%; opacity:0.8;"></div>
+                </div>
+                <div style="font-size:9px; color:var(--text-muted);">Thu</div>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:2px; align-items:center; height:100%;">
+                <div style="flex:1; display:flex; align-items:flex-end; gap:2px; width:100%;">
+                  <div style="flex:1; background:var(--accent); border-radius:2px 2px 0 0; height:65%; opacity:0.8;"></div>
+                  <div style="flex:1; background:var(--gold); border-radius:2px 2px 0 0; height:50%; opacity:0.8;"></div>
+                </div>
+                <div style="font-size:9px; color:var(--text-muted);">Fri</div>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:2px; align-items:center; height:100%;">
+                <div style="flex:1; display:flex; align-items:flex-end; gap:2px; width:100%;">
+                  <div style="flex:1; background:var(--accent); border-radius:2px 2px 0 0; height:45%; opacity:0.8;"></div>
+                  <div style="flex:1; background:var(--gold); border-radius:2px 2px 0 0; height:20%; opacity:0.8;"></div>
+                </div>
+                <div style="font-size:9px; color:var(--text-muted);">Sat</div>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:2px; align-items:center; height:100%;">
+                <div style="flex:1; display:flex; align-items:flex-end; gap:2px; width:100%;">
+                  <div style="flex:1; background:var(--accent); border-radius:2px 2px 0 0; height:80%; opacity:0.8;"></div>
+                  <div style="flex:1; background:var(--gold); border-radius:2px 2px 0 0; height:55%; opacity:0.8;"></div>
+                </div>
+                <div style="font-size:9px; color:var(--text-muted);">Sun</div>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px;">
+              <div style="background:var(--surface); border-radius:8px; padding:10px 12px;">
+                <div style="font-size:10.5px; color:var(--text-muted);">Avg. deposit</div>
+                <div style="font-size:14px; font-weight:600; color:var(--success); margin-top:2px;">₹41,200</div>
+              </div>
+              <div style="background:var(--surface); border-radius:8px; padding:10px 12px;">
+                <div style="font-size:10.5px; color:var(--text-muted);">Avg. withdrawal</div>
+                <div style="font-size:14px; font-weight:600; color:var(--danger); margin-top:2px;">₹18,700</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Quick Actions</span>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button onclick="navTo('atm', document.querySelector('[onclick*=atm]'))" style="flex:1; height:48px; border:0.5px solid var(--border); background:none; border-radius:9px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text-primary); font-weight:500;">
+              <i class="ti ti-arrow-down" style="color:var(--success);" aria-hidden="true"></i> Deposit
+            </button>
+            <button onclick="navTo('atm', document.querySelector('[onclick*=atm]'))" style="flex:1; height:48px; border:0.5px solid var(--border); background:none; border-radius:9px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text-primary); font-weight:500;">
+              <i class="ti ti-arrow-up" style="color:var(--danger);" aria-hidden="true"></i> Withdraw
+            </button>
+            <button onclick="navTo('transfer', document.querySelector('[onclick*=transfer]'))" style="flex:1; height:48px; border:0.5px solid var(--border); background:none; border-radius:9px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text-primary); font-weight:500;">
+              <i class="ti ti-arrows-exchange" style="color:var(--accent);" aria-hidden="true"></i> Transfer
+            </button>
+            <button onclick="navTo('accounts', document.querySelector('[onclick*=accounts]'))" style="flex:1; height:48px; border:0.5px solid var(--border); background:none; border-radius:9px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text-primary); font-weight:500;">
+              <i class="ti ti-user-plus" style="color:var(--gold);" aria-hidden="true"></i> New Account
+            </button>
+          </div>
+        </div>
+      </div>

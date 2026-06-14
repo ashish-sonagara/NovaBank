@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  flex-shrink: 0;
+}
+
+.header {
+  height: 100%;
+  background: var(--white);
+  border-bottom: 0.2rem solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 3rem;
+
+  & {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-primary);
+  }
+}

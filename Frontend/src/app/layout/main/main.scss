@@ -1,0 +1,48 @@
+
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+ 
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--surface);
+
+  .sidebar-style{
+    height: 100%;
+    width: 18%;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    background: var(--surface);
+
+    .header-style{
+      height: 6%;
+    }
+  }
+}
+
+.page-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 28px;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 1024px) {
+  .page-content { padding: 20px; }
+}
+ 
+@media (max-width: 768px) {
+  .app-container main { width: 100%; }
+  .page-content { padding: 16px; }
+}
