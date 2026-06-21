@@ -1,4 +1,4 @@
-package com.ashish.BankManagement.model;
+package com.ashish.BankManagement.dto.response;
 
 import java.time.LocalDateTime;
 

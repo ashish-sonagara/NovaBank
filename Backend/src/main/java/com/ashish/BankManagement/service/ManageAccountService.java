@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.ashish.BankManagement.enums.AccountStatus;
 import com.ashish.BankManagement.exception.AccountNotFoundException;
 import com.ashish.BankManagement.exception.ImproperAccountDetailsException;
 import com.ashish.BankManagement.model.BankAccount;
@@ -20,17 +21,22 @@ public class ManageAccountService {
     @Autowired
     BankRepo bankRepo;
 
-    public ResponseEntity<String> createBankAccount(BankAccount bankAccount){   // further improvements like user will only send the creation DTO , which include ownernae , balance and the accounttype , even the accountNumber wil be generated on the backend
+    public ResponseEntity<String> createBankAccount(BankAccount bankAccount){
         if (bankAccount == null){
             throw new ImproperAccountDetailsException("Entered Account Details are not proper!");
-        }
-        if (bankAccount.getCurrentBalance() < 1000){
-            throw new ImproperAccountDetailsException("Starting Balance Must be equal or greater than 1000");
         }
         if (bankAccount.getTransactionHistory() == null){
             bankAccount.setTransactionHistory(new ArrayList<>());
         }
+
+        if (bankAccount.getCurrentBalance() < 1000){
+            throw new ImproperAccountDetailsException("Starting Balance Must be equal or greater than 1000");
+        }
+        bankAccount.setAccountStatus(AccountStatus.ACTIVE);
+        long calculatedAccountNumber = (long) (Math.random() * 900000000L) + 100000000L; 
+        bankAccount.setAccountNumber(calculatedAccountNumber);
         this.bankRepo.save(bankAccount);
+
         return new ResponseEntity<>("Bank Account Created Successfully" , HttpStatus.CREATED);
     }
 
