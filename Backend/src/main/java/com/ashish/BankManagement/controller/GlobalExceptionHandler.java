@@ -1,18 +1,16 @@
 package com.ashish.BankManagement.controller;
 
 import java.time.LocalDateTime;
-
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.ashish.BankManagement.dto.response.ErrorResponse;
 import com.ashish.BankManagement.exception.AccountNotFoundException;
 import com.ashish.BankManagement.exception.ImproperAccountDetailsException;
 import com.ashish.BankManagement.exception.InsufficientBalanceException;
 import com.ashish.BankManagement.exception.InvalidAmountException;
-import com.ashish.BankManagement.model.ErrorResponse;
 
 @RestControllerAdvice // Marks this class as our global web error shield
 public class GlobalExceptionHandler {
