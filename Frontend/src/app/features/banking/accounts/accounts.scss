@@ -28,7 +28,7 @@
   }
 
   .view-subtitle {
-    font-size: 13px;
+    font-size: 1rem;
     color: var(--text-secondary, #64748b);
     margin: 0;
   }
@@ -205,7 +205,9 @@
 
   .text-right {
     text-align: right;
-    justify-content: flex-end;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
   }
 }
 
