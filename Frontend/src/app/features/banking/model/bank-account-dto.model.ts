@@ -9,6 +9,8 @@ export class BankAccountDTO {
   currentBalance: number;
   accountNumber: number;
   accountStatus: string;
+  // transactionHistory: Transaction[] = []
+
 
   constructor() {
     this.id = null as any;
