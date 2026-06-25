@@ -1,1 +1,184 @@
-<p>accounts works!</p>
+<div class="page-panel active" id="panel-accounts">
+
+  <div class="accounts-header">
+    <div class="header-titles">
+      <p class="view-subtitle">Manage all bank accounts — create, update, delete</p>
+    </div>
+    <button class="btn-add" (click)="openCreateAccount()">
+      <i class="ti ti-plus" aria-hidden="true"></i> New Account
+    </button>
+  </div>
+
+  <div class="filter-ribbon">
+    <div class="search-box-wrapper">
+      <i class="ti ti-search search-icon" aria-hidden="true"></i>
+      <input type="text" class="search-input" placeholder="Search accounts..." />
+    </div>
+    <div class="select-box-wrapper">
+      <select class="filter-select">
+        <option>All Types</option>
+        <option>Savings</option>
+        <option>Current</option>
+        <option>Fixed Deposit</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="accounts-table-viewport">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Serial No.</th>
+          <th>Account Holder</th>
+          <th>Bank</th>
+          <th>Account No.</th>
+          <th>Account Type</th>
+          <th>Balance</th>
+          <th>Status</th>
+          <th>Phone No.</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let account of accountsList">
+
+          <td>{{ account.id + 1 }}</td>
+
+          <td>{{ account.accountOwner }}</td>
+
+          <td>{{ account.bankName }}</td>
+
+          <td>{{ account.accountNumber }}</td>
+
+          <td>{{ account.accountType }}</td>
+
+          <td>
+            ₹{{ account.currentBalance | number:'1.0-2' }}
+          </td>
+
+          <td>
+            <span [class.active]="account.accountStatus === 'ACTIVE'"
+              [class.inactive]="account.accountStatus === 'INACTIVE'">
+
+              {{ account.accountStatus }}
+
+            </span>
+          </td>
+
+          <td>
+            {{ account.phoneNumber }}
+          </td>
+
+          <td class="text-right">
+            <button class="btn-tbl" title="Edit" (click)="editAccount(account)"><i class="ti ti-edit"
+                aria-hidden="true"></i></button>
+            <button class="btn-tbl danger" title="Delete" (click)="deleteAccount(account.id)"><i class="ti ti-trash"
+                aria-hidden="true"></i></button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-pagination-footer">
+    <span class="pagination-counter">Showing 4 of 2,481 accounts</span>
+    <div class="pagination-nav-group">
+      <button class="btn-page-nav">← Prev</button>
+      <button class="btn-page-nav current-page">1</button>
+      <button class="btn-page-nav">2</button>
+      <button class="btn-page-nav">Next →</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-create-account" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+  [class.active]="isModalOpen">
+  <div class="modal-card">
+
+    <div class="modal-header">
+      <div class="modal-header-titles">
+        <h2 class="modal-title" id="modal-title">Create New Account</h2>
+        <p class="modal-subtitle">Register a new customer account within the bank system architecture.</p>
+      </div>
+      <button class="btn-modal-close" (click)="onCloseAccount()" aria-label="Close modal">
+        <i class="ti ti-x" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <form class="modal-form" [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+      <div class="modal-form-scroll-body">
+
+        <div class="form-grid-row cols-2">
+          <div class="form-field-group">
+            <label class="form-label">Account Holder Name</label>
+            <input type="text" class="form-input" placeholder="e.g. Ramesh Kumar" formControlName="accountOwner">
+          </div>
+
+          <div class="form-field-group">
+            <label class="form-label">Mobile Number</label>
+            <input type="text" class="form-input" placeholder="9876543210" maxlength="10" formControlName="phoneNumber">
+          </div>
+        </div>
+
+        <div class="form-grid-row cols-2">
+          <div class="form-field-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="e.g. ramesh@email.com" formControlName="email">
+          </div>
+
+          <div class="form-field-group">
+            <label class="form-label">Select Bank</label>
+
+            <select class="form-select" formControlName="bankName">
+              <option value="">Choose Bank</option>
+              <option value="SBI">SBI</option>
+              <option value="HDFC">HDFC</option>
+              <option value="BOI">BOI</option>
+              <option value="ICICI">ICICI</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-row cols-2">
+          <div class="form-field-group">
+            <label class="form-label">Account Type</label>
+
+            <select class="form-select" formControlName="accountType">
+              <option value="">Choose Type</option>
+              <option value="SAVING">Savings</option>
+              <option value="CURRENT">Current</option>
+              <option value="FIXED_DEPOSIT">Fixed Deposit</option>
+            </select>
+          </div>
+
+          <div class="form-field-group">
+            <label class="form-label">
+              Initial Deposit Amount (INR)
+            </label>
+
+            <input type="number" class="form-input" placeholder="1000" formControlName="currentBalance">
+          </div>
+        </div>
+
+        <div class="form-field-group" *ngIf="isEditMode">
+          <label class="form-label" for="acc-status">Initial Status</label>
+          <div class="select-field-wrapper">
+            <select id="acc-status" class="form-select" required formControlName="accountStatus">
+              <option value="ACTIVE">Active (Deploy Immediately)</option>
+              <option value="INACTIVE">Inactive (Hold Configuration)</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-secondary" (click)="onCloseAccount()">Cancel</button>
+        <button type="submit" class="btn-modal-primary">Register Account</button>
+      </div>
+    </form>
+
+  </div>
+</div>

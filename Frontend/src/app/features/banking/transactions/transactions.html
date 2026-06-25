@@ -1,1 +1,120 @@
-<p>transactions works!</p>
+<div class="page-panel active" id="panel-transactions">
+  
+  <div class="view-header-description">
+    Full transaction history — all deposits, withdrawals, and transfers
+  </div>
+
+  <div class="tx-filters-management-bar">
+    <div class="filter-chips-group">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Deposits</button>
+      <button class="filter-btn">Withdrawals</button>
+      <button class="filter-btn">Transfers</button>
+    </div>
+
+    <div class="filter-controls-inputs-group">
+      <div class="date-picker-wrapper">
+        <input type="date" class="control-date-input" aria-label="Filter by date" />
+      </div>
+
+      <div class="search-bar-wrapper">
+        <i class="ti ti-search search-icon-indicator" aria-hidden="true"></i>
+        <input type="text" class="control-search-input" placeholder="Search by ID or account..." />
+      </div>
+
+      <div class="select-limit-wrapper">
+        <select class="control-select-dropdown" aria-label="Rows page limit selection">
+          <option>Last 10</option>
+          <option>Last 20</option>
+          <option>Last 50</option>
+          <option>All</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="tx-table-wrap">
+    <table class="banking-data-table">
+      <thead>
+        <tr>
+          <th>Tx ID</th>
+          <th>Type</th>
+          <th>Account</th>
+          <th>Amount</th>
+          <th>Date & Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono font-muted">TXN-9821</td>
+          <td>
+            <span class="tx-type-indicator inline-pos">
+              <i class="ti ti-arrow-down" aria-hidden="true"></i> Deposit
+            </span>
+          </td>
+          <td class="mono">#1042</td>
+          <td class="mono value-pos font-bold">+₹25,000</td>
+          <td class="timestamp-cell">07 Jun 2025, 10:24 AM</td>
+          <td><span class="status-pill pill-active">Success</span></td>
+        </tr>
+        
+        <tr>
+          <td class="mono font-muted">TXN-9820</td>
+          <td>
+            <span class="tx-type-indicator inline-neg">
+              <i class="ti ti-arrow-up" aria-hidden="true"></i> Withdrawal
+            </span>
+          </td>
+          <td class="mono">#2091</td>
+          <td class="mono value-neg font-bold">-₹8,500</td>
+          <td class="timestamp-cell">07 Jun 2025, 09:51 AM</td>
+          <td><span class="status-pill pill-active">Success</span></td>
+        </tr>
+        
+        <tr>
+          <td class="mono font-muted">TXN-9819</td>
+          <td>
+            <span class="tx-type-indicator inline-accent">
+              <i class="ti ti-arrows-exchange" aria-hidden="true"></i> Transfer
+            </span>
+          </td>
+          <td class="mono">#1042 → #3017</td>
+          <td class="mono value-neg font-bold">-₹50,000</td>
+          <td class="timestamp-cell">07 Jun 2025, 09:11 AM</td>
+          <td><span class="status-pill pill-active">Success</span></td>
+        </tr>
+        
+        <tr>
+          <td class="mono font-muted">TXN-9818</td>
+          <td>
+            <span class="tx-type-indicator inline-pos">
+              <i class="ti ti-arrow-down" aria-hidden="true"></i> Deposit
+            </span>
+          </td>
+          <td class="mono">#0917</td>
+          <td class="mono value-pos font-bold">+₹1,20,000</td>
+          <td class="timestamp-cell">06 Jun 2025, 04:30 PM</td>
+          <td><span class="status-pill pill-active">Success</span></td>
+        </tr>
+        
+        <tr>
+          <td class="mono font-muted">TXN-9817</td>
+          <td>
+            <span class="tx-type-indicator inline-neg">
+              <i class="ti ti-arrow-up" aria-hidden="true"></i> Withdrawal
+            </span>
+          </td>
+          <td class="mono">#3017</td>
+          <td class="mono value-neg font-bold">-₹15,000</td>
+          <td class="timestamp-cell">06 Jun 2025, 02:15 PM</td>
+          <td><span class="status-pill pill-pending">Pending</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="view-footer-counter">
+    Showing last 5 of 9,821 transactions
+  </div>
+</div>
