@@ -624,3 +624,20 @@
     }
   }
 }
+
+.error-text {
+    display: block;
+    color: #dc2626;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.form-input.ng-invalid.ng-touched,
+.form-select.ng-invalid.ng-touched {
+    border: 1px solid #dc2626;
+}
+
+.form-input.ng-valid.ng-touched,
+.form-select.ng-valid.ng-touched {
+    border: 1px solid #16a34a;
+}

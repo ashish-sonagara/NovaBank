@@ -16,6 +16,7 @@ export class CustomToastService {
   private counter = 0;
 
   showSuccess(title: string, message: string) {
+    console.log("not updating")
     this.addToast(title, message, 'success');
   }
 
@@ -31,9 +32,10 @@ export class CustomToastService {
     const id = this.counter++;
     const newToast: ToastMessage = { id, title, message, type };
 
-    // Update the signal array cleanly
-    this.toasts.update((current) => [...current, newToast]);
+    console.log("inside this method ")
 
+    this.toasts.update((current) => [...current, newToast]);
+    console.log(this.toasts());
     // Automatically remove the toast card after exactly 3 seconds (3000ms)
     setTimeout(() => {
       this.remove(id);
