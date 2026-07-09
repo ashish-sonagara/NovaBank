@@ -43,7 +43,6 @@ export class Accounts implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
     this.fetchAccounts('')
   }
 
@@ -129,7 +128,6 @@ export class Accounts implements OnInit {
     debugger
     this.isEditMode = true
     this.selectedAccount = bankAccount
-    console.log("for edit --> ", bankAccount)
     this.accountForm.patchValue({
       accountOwner: bankAccount.accountOwner,
       phoneNumber: bankAccount.phoneNumber,

@@ -42,7 +42,7 @@ export const routes: Routes = [
       ,
       {
         path: 'atm-services',
-        loadComponent: () => import('./features/banking/atm-services/atm-services').then((m) => m.AtmServices),
+        loadComponent: () => import('./features/banking/atm-services/atm-services').then((m) => m.ATMServices),
         data: { title: 'ATM SERVICE' }
       },
       {
