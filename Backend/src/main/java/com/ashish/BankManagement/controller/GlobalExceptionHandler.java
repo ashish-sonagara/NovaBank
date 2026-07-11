@@ -11,6 +11,7 @@ import com.ashish.BankManagement.exception.AccountNotFoundException;
 import com.ashish.BankManagement.exception.ImproperAccountDetailsException;
 import com.ashish.BankManagement.exception.InsufficientBalanceException;
 import com.ashish.BankManagement.exception.InvalidAmountException;
+import com.ashish.BankManagement.exception.InvalidTransactionException;
 
 @RestControllerAdvice // Marks this class as our global web error shield
 public class GlobalExceptionHandler {
@@ -67,6 +68,18 @@ public class GlobalExceptionHandler {
             LocalDateTime.now(),
             HttpStatus.BAD_REQUEST.value(),
             "Account ID Error",
+            ex.getMessage()
+        );
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidTransactionException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidTransactionException(InvalidTransactionException ex) {
+        ErrorResponse response = new ErrorResponse(
+            LocalDateTime.now(),
+            HttpStatus.BAD_REQUEST.value(),
+            "Transaction Error", // Clear title indicating a business logic/transaction violation
             ex.getMessage()
         );
 

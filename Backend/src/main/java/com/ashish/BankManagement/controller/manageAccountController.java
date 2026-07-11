@@ -1,7 +1,10 @@
 package com.ashish.BankManagement.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ashish.BankManagement.dto.response.ResponseDTO;
 import com.ashish.BankManagement.model.BankAccount;
 import com.ashish.BankManagement.service.ManageAccountService;
 
@@ -26,8 +29,15 @@ public class manageAccountController {
     ManageAccountService manageAccountService;
 
     @GetMapping("get-accounts")
-    public ResponseEntity<List<BankAccount>> getMethodName() {
-        return this.manageAccountService.getAllBankAccounts();
+    public ResponseEntity<ResponseDTO> getAllBankAccounts() {
+        List<BankAccount> bankAccounts = this.manageAccountService.getAllBankAccounts();
+
+        ResponseDTO response = new ResponseDTO();
+        response.setMessage("Accounts Fetched SuccessFully");
+        response.setSuccess(1);
+        response.setServiceResult(bankAccounts);
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("get-account-by-id/{accoundID}")
@@ -41,12 +51,25 @@ public class manageAccountController {
     }
 
     @PostMapping("create-account")
-    public ResponseEntity<String> createBankAccount(@RequestBody BankAccount bankAccount) {
-        return this.manageAccountService.createBankAccount(bankAccount);
+    public ResponseDTO createBankAccount(@RequestBody BankAccount bankAccount) {
+        String message = this.manageAccountService.createBankAccount(bankAccount);
+        ResponseDTO response = new ResponseDTO();
+        response.setMessage(message);
+        response.setSuccess(1);
+        response.setServiceResult(message);
+
+        return response;
     }
     
     @DeleteMapping("delete-account/{accountId}")
-    public ResponseEntity<String> deleteAccountByID(@PathVariable Integer accountId){
-        return this.manageAccountService.deleteAccountByID(accountId);
+    public ResponseEntity<ResponseDTO> deleteAccountByID(@PathVariable Integer accountId) {
+        String resultMessage = this.manageAccountService.deleteAccountByID(accountId);
+
+        ResponseDTO response = new ResponseDTO();
+        response.setMessage(resultMessage);
+        response.setSuccess(1);
+        response.setServiceResult(resultMessage);
+
+        return ResponseEntity.ok(response);
     }
 }
