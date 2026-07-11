@@ -3,13 +3,13 @@ package com.ashish.BankManagement.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.ManyToAny;
-
+import com.ashish.BankManagement.enums.TransactionStatus;
 import com.ashish.BankManagement.enums.TransactionType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,6 +29,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transactionId;
 
+    @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
     private double transactionAmount;
     private LocalDateTime date;
@@ -37,4 +38,8 @@ public class Transaction {
     @JoinColumn(name="bank_account_id")
     @JsonIgnore
     private BankAccount bankAccount;
+
+    @Enumerated(EnumType.STRING)
+    private TransactionStatus transactionStatus;
+
 }

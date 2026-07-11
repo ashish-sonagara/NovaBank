@@ -21,7 +21,7 @@ public class ManageAccountService {
     @Autowired
     BankRepo bankRepo;
 
-    public ResponseEntity<String> createBankAccount(BankAccount bankAccount){
+    public String createBankAccount(BankAccount bankAccount){
         if (bankAccount == null){
             throw new ImproperAccountDetailsException("Entered Account Details are not proper!");
         }
@@ -37,15 +37,15 @@ public class ManageAccountService {
         bankAccount.setAccountNumber(calculatedAccountNumber);
         this.bankRepo.save(bankAccount);
 
-        return new ResponseEntity<>("Bank Account Created Successfully" , HttpStatus.CREATED);
+        return "Bank Account Created Successfully";
     }
 
-    public ResponseEntity<List<BankAccount>> getAllBankAccounts() {   
+    public List<BankAccount> getAllBankAccounts() {   
         List<BankAccount> allAccount = this.bankRepo.findAll();
-        return new ResponseEntity<>(allAccount, HttpStatus.OK);
+        return allAccount;
     }
 
-    public ResponseEntity<String> deleteAccountByID(Integer accountId) {
+    public String deleteAccountByID(Integer accountId) {
         if (accountId == null){
             throw new IllegalArgumentException("Account ID cannot be NUll");
         }
@@ -54,7 +54,7 @@ public class ManageAccountService {
             throw new AccountNotFoundException("Bank Account Not Found!");
         }
         this.bankRepo.deleteById(accountId);
-        return new ResponseEntity<>("Account with ID-" + accountId + " Succesfully Deleted!" , HttpStatus.OK);
+        return "Account with ID-" + accountId + " Succesfully Deleted!";
 
         // try{
         //     this.bankRepo.deleteById(accountId);
