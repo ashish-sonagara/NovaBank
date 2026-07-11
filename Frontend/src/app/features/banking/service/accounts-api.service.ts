@@ -1,6 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { BankAccountDTO } from "../model/bank-account-dto.model";
+import { Injectable } from '@angular/core';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class AccountsAPI {
     
     constructor(

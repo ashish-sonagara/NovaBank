@@ -39,45 +39,46 @@
           <th class="text-right">Actions</th>
         </tr>
       </thead>
-
+  
       <tbody>
-        <tr *ngFor="let account of accountsList">
-
+        @for (account of accountsList(); track account.id) {
+        <tr>
           <td>{{ account.id + 1 }}</td>
-
+  
           <td>{{ account.accountOwner }}</td>
-
+  
           <td>{{ account.bankName }}</td>
-
+  
           <td>{{ account.accountNumber }}</td>
-
+  
           <td>{{ account.accountType }}</td>
-
+  
           <td>
-            ₹{{ account.currentBalance | number:'1.0-2' }}
+            ₹{{ account.currentBalance }}
           </td>
-
+  
           <td>
             <span [class.active]="account.accountStatus === 'ACTIVE'"
               [class.inactive]="account.accountStatus === 'INACTIVE'">
-
               {{ account.accountStatus }}
-
             </span>
           </td>
-
+  
           <td>
             {{ account.phoneNumber }}
           </td>
-
+  
           <td class="text-right">
-            <button class="btn-tbl" title="Edit" (click)="editAccount(account)"><i class="ti ti-edit"
-                aria-hidden="true"></i></button>
-            <button class="btn-tbl danger" title="Delete" (click)="deleteAccount(account.id)"><i class="ti ti-trash"
-                aria-hidden="true"></i></button>
+            <button class="btn-tbl" title="Edit" (click)="editAccount(account)">
+              <i class="ti ti-edit" aria-hidden="true"></i>
+            </button>
+  
+            <button class="btn-tbl danger" title="Delete" (click)="deleteAccount(account.id)">
+              <i class="ti ti-trash" aria-hidden="true"></i>
+            </button>
           </td>
-
         </tr>
+        }
       </tbody>
     </table>
   </div>
@@ -109,60 +110,177 @@
 
     <form class="modal-form" [formGroup]="accountForm" (ngSubmit)="onSubmit()">
       <div class="modal-form-scroll-body">
-
+      
         <div class="form-grid-row cols-2">
           <div class="form-field-group">
-            <label class="form-label">Account Holder Name</label>
+            <label class="form-label">
+              Account Holder Name
+            </label>
+      
             <input type="text" class="form-input" placeholder="e.g. Ramesh Kumar" formControlName="accountOwner">
+      
+            @if(accountForm.get('accountOwner')?.touched &&
+            accountForm.get('accountOwner')?.invalid){
+      
+            <small class="error-text">
+      
+              @if(accountForm.get('accountOwner')?.errors?.['required']){
+              Account holder name is required.
+              }
+      
+              @if(accountForm.get('accountOwner')?.errors?.['minlength']){
+              Minimum 3 characters required.
+              }
+      
+              @if(accountForm.get('accountOwner')?.errors?.['maxlength']){
+              Maximum 100 characters allowed.
+              }
+      
+            </small>
+      
+            }
           </div>
-
+      
           <div class="form-field-group">
-            <label class="form-label">Mobile Number</label>
-            <input type="text" class="form-input" placeholder="9876543210" maxlength="10" formControlName="phoneNumber">
+      
+            <label class="form-label">
+              Mobile Number
+            </label>
+      
+            <input type="text" maxlength="10" class="form-input" placeholder="9876543210" formControlName="phoneNumber">
+      
+            @if(accountForm.get('phoneNumber')?.touched &&
+            accountForm.get('phoneNumber')?.invalid){
+      
+            <small class="error-text">
+      
+              @if(accountForm.get('phoneNumber')?.errors?.['required']){
+              Phone number is required.
+              }
+      
+              @if(accountForm.get('phoneNumber')?.errors?.['pattern']){
+              Enter a valid 10-digit mobile number.
+              }
+      
+            </small>
+      
+            }
+      
           </div>
         </div>
-
+      
         <div class="form-grid-row cols-2">
           <div class="form-field-group">
-            <label class="form-label">Email Address</label>
-            <input type="email" class="form-input" placeholder="e.g. ramesh@email.com" formControlName="email">
+        
+            <label class="form-label">
+              Email Address
+            </label>
+        
+            <input type="email" class="form-input" placeholder="example@email.com" formControlName="email">
+        
+            @if(accountForm.get('email')?.touched &&
+            accountForm.get('email')?.invalid){
+        
+            <small class="error-text">
+        
+              @if(accountForm.get('email')?.errors?.['required']){
+              Email is required.
+              }
+        
+              @if(accountForm.get('email')?.errors?.['email']){
+              Invalid email address.
+              }
+        
+            </small>
+        
+            }
+        
           </div>
-
+        
           <div class="form-field-group">
-            <label class="form-label">Select Bank</label>
-
+        
+            <label class="form-label">
+              Select Bank
+            </label>
+        
             <select class="form-select" formControlName="bankName">
-              <option value="">Choose Bank</option>
+              <option value="" disabled>Choose Bank</option>
+            
               <option value="SBI">SBI</option>
               <option value="HDFC">HDFC</option>
               <option value="BOI">BOI</option>
               <option value="ICICI">ICICI</option>
             </select>
+
+            @if(accountForm.get('bankName')?.touched &&
+            accountForm.get('bankName')?.invalid){
+        
+            <small class="error-text">
+              Please select a bank.
+            </small>
+        
+            }
+        
           </div>
         </div>
-
+      
         <div class="form-grid-row cols-2">
           <div class="form-field-group">
-            <label class="form-label">Account Type</label>
-
+        
+            <label class="form-label">
+              Account Type
+            </label>
+        
             <select class="form-select" formControlName="accountType">
-              <option value="">Choose Type</option>
+        
+              <option value="" disabled >Choose Type</option>
               <option value="SAVING">Savings</option>
               <option value="CURRENT">Current</option>
               <option value="FIXED_DEPOSIT">Fixed Deposit</option>
+        
             </select>
+        
+            @if(accountForm.get('accountType')?.touched &&
+            accountForm.get('accountType')?.invalid){
+        
+            <small class="error-text">
+              Please select an account type.
+            </small>
+        
+            }
+        
           </div>
-
+        
           <div class="form-field-group">
+        
             <label class="form-label">
               Initial Deposit Amount (INR)
             </label>
-
+        
             <input type="number" class="form-input" placeholder="1000" formControlName="currentBalance">
+        
+            @if(accountForm.get('currentBalance')?.touched &&
+            accountForm.get('currentBalance')?.invalid){
+        
+            <small class="error-text">
+        
+              @if(accountForm.get('currentBalance')?.errors?.['required']){
+              Initial deposit is required.
+              }
+        
+              @if(accountForm.get('currentBalance')?.errors?.['min']){
+              Minimum deposit is ₹1000.
+              }
+        
+            </small>
+        
+            }
+        
           </div>
         </div>
-
-        <div class="form-field-group" *ngIf="isEditMode">
+      
+        @if (isEditMode) {
+        <div class="form-field-group">
           <label class="form-label" for="acc-status">Initial Status</label>
           <div class="select-field-wrapper">
             <select id="acc-status" class="form-select" required formControlName="accountStatus">
@@ -171,7 +289,8 @@
             </select>
           </div>
         </div>
-
+        }
+      
       </div>
 
       <div class="modal-footer">

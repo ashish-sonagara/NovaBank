@@ -1,8 +1,4 @@
 <div class="page-panel active" id="panel-transactions">
-  
-  <div class="view-header-description">
-    Full transaction history — all deposits, withdrawals, and transfers
-  </div>
 
   <div class="tx-filters-management-bar">
     <div class="filter-chips-group">
@@ -39,82 +35,93 @@
         <tr>
           <th>Tx ID</th>
           <th>Type</th>
-          <th>Account</th>
+          <th>Account Owner</th>
+          <th>Account Number</th>
+          <th>Bank Name</th>
           <th>Amount</th>
           <th>Date & Time</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
+
+        @for (transaction of transactionsList(); track transaction.transactionId) {
         <tr>
-          <td class="mono font-muted">TXN-9821</td>
+
+          <td>TXN-{{ transaction.transactionId }}</td>
+
           <td>
-            <span class="tx-type-indicator inline-pos">
-              <i class="ti ti-arrow-down" aria-hidden="true"></i> Deposit
+            <span class="tx-type-indicator" [ngClass]="{
+                'inline-pos': transaction.transactionType === 'DEPOSIT',
+                'inline-neg': transaction.transactionType === 'WITHDRAW',
+                'inline-accent': transaction.transactionType === 'DEBIT' || transaction.transactionType === 'CREDIT'
+              }">
+
+              <i class="ti" [ngClass]="{
+                  'ti-arrow-down': transaction.transactionType === 'DEPOSIT',
+                  'ti-arrow-up': transaction.transactionType === 'WITHDRAW',
+                  'ti-arrows-exchange': transaction.transactionType === 'DEBIT' || transaction.transactionType === 'CREDIT'
+                }">
+              </i>
+
+              {{ transaction.transactionType }}
+
             </span>
           </td>
-          <td class="mono">#1042</td>
-          <td class="mono value-pos font-bold">+₹25,000</td>
-          <td class="timestamp-cell">07 Jun 2025, 10:24 AM</td>
-          <td><span class="status-pill pill-active">Success</span></td>
-        </tr>
-        
-        <tr>
-          <td class="mono font-muted">TXN-9820</td>
+
           <td>
-            <span class="tx-type-indicator inline-neg">
-              <i class="ti ti-arrow-up" aria-hidden="true"></i> Withdrawal
+            <div class="account-details">
+              <div class="account-owner">{{ transaction.accountOwner }}</div>
+            </div>
+          </td>
+
+          <td>
+            <div class="account-details">
+              <div class="account-number">{{ transaction.accountNumber }}</div>
+            </div>
+          </td>
+
+          <td>
+            <div class="account-details">
+              <div class="account-bank">{{ transaction.bankName }}</div>
+            </div>
+          </td>
+
+          <td [class.value-pos]="transaction.transactionType === 'DEPOSIT' || transaction.transactionType === 'CREDIT'"
+            [class.value-neg]="transaction.transactionType === 'WITHDRAW' || transaction.transactionType === 'DEBIT'">
+            {{ transaction.transactionType === 'DEPOSIT' || transaction.transactionType === 'CREDIT' ? '+' : '-' }}
+            ₹{{ transaction.transactionAmount | number:'1.2-2' }}
+          </td>
+
+          <td>
+            {{ transaction.date | date:'dd MMM yyyy, hh:mm a' }}
+          </td>
+
+          <td>
+            <span class="status-pill" [ngClass]="{
+                'pill-active': transaction.transactionStatus === 'SUCCESS',
+                'pill-pending': transaction.transactionStatus === 'FAILED'
+              }">
+              {{ transaction.transactionStatus }}
             </span>
           </td>
-          <td class="mono">#2091</td>
-          <td class="mono value-neg font-bold">-₹8,500</td>
-          <td class="timestamp-cell">07 Jun 2025, 09:51 AM</td>
-          <td><span class="status-pill pill-active">Success</span></td>
+
         </tr>
-        
+        }
+
+        @empty {
         <tr>
-          <td class="mono font-muted">TXN-9819</td>
-          <td>
-            <span class="tx-type-indicator inline-accent">
-              <i class="ti ti-arrows-exchange" aria-hidden="true"></i> Transfer
-            </span>
+          <td colspan="8" style="text-align:center; padding: 32px;">
+            No transactions found.
           </td>
-          <td class="mono">#1042 → #3017</td>
-          <td class="mono value-neg font-bold">-₹50,000</td>
-          <td class="timestamp-cell">07 Jun 2025, 09:11 AM</td>
-          <td><span class="status-pill pill-active">Success</span></td>
         </tr>
-        
-        <tr>
-          <td class="mono font-muted">TXN-9818</td>
-          <td>
-            <span class="tx-type-indicator inline-pos">
-              <i class="ti ti-arrow-down" aria-hidden="true"></i> Deposit
-            </span>
-          </td>
-          <td class="mono">#0917</td>
-          <td class="mono value-pos font-bold">+₹1,20,000</td>
-          <td class="timestamp-cell">06 Jun 2025, 04:30 PM</td>
-          <td><span class="status-pill pill-active">Success</span></td>
-        </tr>
-        
-        <tr>
-          <td class="mono font-muted">TXN-9817</td>
-          <td>
-            <span class="tx-type-indicator inline-neg">
-              <i class="ti ti-arrow-up" aria-hidden="true"></i> Withdrawal
-            </span>
-          </td>
-          <td class="mono">#3017</td>
-          <td class="mono value-neg font-bold">-₹15,000</td>
-          <td class="timestamp-cell">06 Jun 2025, 02:15 PM</td>
-          <td><span class="status-pill pill-pending">Pending</span></td>
-        </tr>
+        }
+
       </tbody>
     </table>
   </div>
 
   <div class="view-footer-counter">
-    Showing last 5 of 9,821 transactions
+    Showing {{ transactionsList().length }} transactions
   </div>
 </div>
