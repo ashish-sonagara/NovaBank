@@ -1,7 +1,5 @@
 <!-- ATM SERVICES -->
 <div class="page-panel" id="panel-atm">
-  <div style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">Bank service operations — POST
-    /bank-service endpoints</div>
   <div class="atm-grid">
 
     <div class="service-card">
@@ -150,7 +148,9 @@
         <tr>
           <th>Tx ID</th>
           <th>Type</th>
-          <th>Account</th>
+          <th>Account Owner</th>
+          <th>Account Number</th>
+          <th>Bank Name</th>
           <th>Amount</th>
           <th>Date & Time</th>
           <th>Status</th>
@@ -159,7 +159,77 @@
 
       <tbody>
 
-        <!-- Rows -->
+        @for (transaction of transactionsList(); track transaction.transactionId) {
+        <tr>
+
+          <td>TXN-{{ transaction.transactionId }}</td>
+
+          <td>
+            <span class="tx-type-indicator" [ngClass]="{
+              'inline-pos': transaction.transactionType === 'DEPOSIT',
+              'inline-neg': transaction.transactionType === 'WITHDRAW',
+              'inline-accent': transaction.transactionType === 'DEBIT' || transaction.transactionType === 'CREDIT'
+            }">
+
+              <i class="ti" [ngClass]="{
+                'ti-arrow-down': transaction.transactionType === 'DEPOSIT',
+                'ti-arrow-up': transaction.transactionType === 'WITHDRAW',
+                'ti-arrows-exchange': transaction.transactionType === 'DEBIT' || transaction.transactionType === 'CREDIT'
+              }">
+              </i>
+
+              {{ transaction.transactionType }}
+
+            </span>
+          </td>
+
+          <td>
+            <div class="account-details">
+              <div class="account-owner">{{ transaction.accountOwner }}</div>
+            </div>
+          </td>
+
+          <td>
+            <div class="account-details">
+              <div class="account-number">{{ transaction.accountNumber }}</div>
+            </div>
+          </td>
+
+          <td>
+            <div class="account-details">
+              <div class="account-bank">{{ transaction.bankName }}</div>
+            </div>
+          </td>
+
+          <td [class.value-pos]="transaction.transactionType === 'DEPOSIT' || transaction.transactionType === 'CREDIT'"
+            [class.value-neg]="transaction.transactionType === 'WITHDRAW' || transaction.transactionType === 'DEBIT'">
+            {{ transaction.transactionType === 'DEPOSIT' || transaction.transactionType === 'CREDIT' ? '+' : '-' }}
+            ₹{{ transaction.transactionAmount | number:'1.2-2' }}
+          </td>
+
+          <td>
+            {{ transaction.date | date:'dd MMM yyyy, hh:mm a' }}
+          </td>
+
+          <td>
+            <span class="status-pill" [ngClass]="{
+              'pill-active': transaction.transactionStatus === 'SUCCESS',
+              'pill-pending': transaction.transactionStatus === 'FAILED'
+            }">
+              {{ transaction.transactionStatus }}
+            </span>
+          </td>
+
+        </tr>
+        }
+
+        @empty {
+        <tr>
+          <td colspan="6" style="text-align:center; padding: 32px;">
+            No transactions found.
+          </td>
+        </tr>
+        }
 
       </tbody>
 

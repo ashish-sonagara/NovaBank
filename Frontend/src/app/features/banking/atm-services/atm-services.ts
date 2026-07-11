@@ -1,18 +1,15 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { ATMServiceAPI } from '../service/atm-service-api.service';
 import { CustomToastService } from '../../../shared/service/customToast.service';
 import { ApiResponseStatus } from '../../../core/enums/ApiResponse';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TransactionDTO } from '../model/TransactionDTO.model';
 
 @Component({
   selector: 'app-atm-services',
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterLink
-  ],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './atm-services.html',
   styleUrl: './atm-services.scss',
 })
@@ -21,7 +18,9 @@ export class ATMServices {
   withdrawForm!: FormGroup;
   transferForm!: FormGroup;
 
-  recentTransactions = signal<any[]>([]);
+  transactionsList: WritableSignal<TransactionDTO[]> = signal([]);
+  transactionLoader = false;
+  noTransactionsFound = false;
 
   constructor(
     private fb: FormBuilder,
@@ -48,113 +47,94 @@ export class ATMServices {
   }
 
   ngOnInit() {
-    this.loadRecentTransactions();
+    this.fetchTransactions('');
   }
 
   depositMoney() {
+    if (this.depositForm.invalid) {
+      this.depositForm.markAllAsTouched();
+      return;
+    }
 
-  if (this.depositForm.invalid) {
-    this.depositForm.markAllAsTouched();
-    return;
-  }
+    const { accountNumber, amount } = this.depositForm.value;
 
-  const { accountNumber, amount } = this.depositForm.value;
-
-  this.atmAPI.deposit(accountNumber, amount)
-    .subscribe((res: any) => {
-
+    this.atmAPI.deposit(accountNumber, amount).subscribe((res: any) => {
       if (res.success === ApiResponseStatus.SUCCESS) {
-
         this.toastr.showSuccess('Success', res.message);
-
         this.depositForm.reset();
-
-        this.loadRecentTransactions();
-
+        this.fetchTransactions('');
       } else {
-
         this.toastr.showError('Error', res.message);
-
       }
-
     });
-
-}
-
- withdrawMoney() {
-
-  if (this.withdrawForm.invalid) {
-    this.withdrawForm.markAllAsTouched();
-    return;
   }
 
-  const { accountNumber, amount } = this.withdrawForm.value;
+  withdrawMoney() {
+    if (this.withdrawForm.invalid) {
+      this.withdrawForm.markAllAsTouched();
+      return;
+    }
 
-  this.atmAPI.withdraw(accountNumber, amount)
-    .subscribe((res: any) => {
+    const { accountNumber, amount } = this.withdrawForm.value;
 
+    this.atmAPI.withdraw(accountNumber, amount).subscribe((res: any) => {
       if (res.success === ApiResponseStatus.SUCCESS) {
-
         this.toastr.showSuccess('Success', res.message);
-
         this.withdrawForm.reset();
-
-        this.loadRecentTransactions();
-
+        this.fetchTransactions('');
       } else {
-
         this.toastr.showError('Error', res.message);
-
       }
-
     });
-
-}
+  }
 
   transferMoney() {
+    if (this.transferForm.invalid) {
+      this.transferForm.markAllAsTouched();
+      return;
+    }
 
-  if (this.transferForm.invalid) {
-    this.transferForm.markAllAsTouched();
-    return;
-  }
+    const { fromAccountNumber, toAccountNumber, amount } = this.transferForm.value;
 
-  const {
-    fromAccountNumber,
-    toAccountNumber,
-    amount
-  } = this.transferForm.value;
-
-  this.atmAPI
-    .transfer(
-      fromAccountNumber,
-      toAccountNumber,
-      amount
-    )
-    .subscribe((res: any) => {
-
+    this.atmAPI.transfer(fromAccountNumber, toAccountNumber, amount).subscribe((res: any) => {
       if (res.success === ApiResponseStatus.SUCCESS) {
-
         this.toastr.showSuccess('Success', res.message);
-
         this.transferForm.reset();
-
-        this.loadRecentTransactions();
-
+        this.fetchTransactions('');
       } else {
-
         this.toastr.showError('Error', res.message);
-
-      }
-
-    });
-
-}
-
-  loadRecentTransactions() {
-    this.atmAPI.fetchRecentTransactions().subscribe((res: any) => {
-      if (res.success === ApiResponseStatus.SUCCESS) {
-        this.recentTransactions.set(res.serviceResult);
       }
     });
   }
+
+
+  fetchTransactions(event: any) {
+    this.transactionLoader = true;
+
+    this.atmAPI.fetchLastNTransaction(5).subscribe((res: any) => {
+      if (res.success === ApiResponseStatus.SUCCESS) {
+        if (event === '') {
+          this.transactionsList.set([]);
+          this.transactionLoader = false;
+        }
+
+        const allTransaction: TransactionDTO[] = res.serviceResult;
+
+        if (allTransaction.length !== 0) {
+          allTransaction.forEach((newTransaction) => {
+            const existing = this.transactionsList().find(
+              (tx) => tx.transactionId === newTransaction.transactionId,
+            );
+
+            if (!existing) {
+              this.transactionsList.update((transactions) => [...transactions, newTransaction]);
+            }
+          });
+        }
+
+        this.noTransactionsFound = this.transactionsList().length === 0;
+      }
+    });
+  }
+
 }

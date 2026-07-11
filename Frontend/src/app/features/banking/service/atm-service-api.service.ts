@@ -15,15 +15,18 @@ export class ATMServiceAPI {
   }
 
   withdraw(accountNumber: number, amount: number) {
-    return this.http.post(`${this.baseUrl}/withdraw?accountID=${accountNumber}&amount=${amount}`,{});
+    return this.http.post(`${this.baseUrl}/withdraw?accountNumber=${accountNumber}&amount=${amount}`,{});
   }
 
   transfer(fromAccount: number, toAccount: number, amount: number) {
-    return this.http.post(`${this.baseUrl}/transfer?fromAccount=${fromAccount}&toAccount=${toAccount}&amount=${amount}`,{});
+    return this.http.post(`${this.baseUrl}/transfer?accountNumber1=${fromAccount}&accountNumber2=${toAccount}&amount=${amount}`,{});
   }
 
-  fetchRecentTransactions() {
-    return this.http.get(`${this.baseUrl}/recent-transactions`);
+  fetchAllTransaction() {
+    return this.http.get(`${this.baseUrl}/transactions`);
   }
 
+  fetchLastNTransaction(n: number){
+    return this.http.get(`${this.baseUrl}/last-n-transactions?n=${n}`)
+  }
 }

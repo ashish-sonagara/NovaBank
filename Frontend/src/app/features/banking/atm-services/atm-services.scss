@@ -220,10 +220,10 @@
 .tx-table-wrap {
   background: var(--white, white);
   border: 1px solid var(--border, #e2e8f0);
-  border-radius: 12px;
   overflow-x: auto; // Protect view structure against low density resolutions break down
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.01);
-  height:200px;
+  height:240px;
+  overflow-y: hidden;
 }
 
 // Pure Global Structural Data Layout Styling Matrix
