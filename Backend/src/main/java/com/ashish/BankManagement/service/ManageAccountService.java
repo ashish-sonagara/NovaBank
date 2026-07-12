@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.ashish.BankManagement.enums.AccountStatus;
 import com.ashish.BankManagement.exception.AccountNotFoundException;
 import com.ashish.BankManagement.exception.ImproperAccountDetailsException;
 import com.ashish.BankManagement.model.BankAccount;
@@ -20,26 +21,31 @@ public class ManageAccountService {
     @Autowired
     BankRepo bankRepo;
 
-    public ResponseEntity<String> createBankAccount(BankAccount bankAccount){   // further improvements like user will only send the creation DTO , which include ownernae , balance and the accounttype , even the accountNumber wil be generated on the backend
+    public String createBankAccount(BankAccount bankAccount){
         if (bankAccount == null){
             throw new ImproperAccountDetailsException("Entered Account Details are not proper!");
-        }
-        if (bankAccount.getCurrentBalance() < 1000){
-            throw new ImproperAccountDetailsException("Starting Balance Must be equal or greater than 1000");
         }
         if (bankAccount.getTransactionHistory() == null){
             bankAccount.setTransactionHistory(new ArrayList<>());
         }
+
+        if (bankAccount.getCurrentBalance() < 1000){
+            throw new ImproperAccountDetailsException("Starting Balance Must be equal or greater than 1000");
+        }
+        bankAccount.setAccountStatus(AccountStatus.ACTIVE);
+        long calculatedAccountNumber = (long) (Math.random() * 900000000L) + 100000000L; 
+        bankAccount.setAccountNumber(calculatedAccountNumber);
         this.bankRepo.save(bankAccount);
-        return new ResponseEntity<>("Bank Account Created Successfully" , HttpStatus.CREATED);
+
+        return "Bank Account Created Successfully";
     }
 
-    public ResponseEntity<List<BankAccount>> getAllBankAccounts() {   
+    public List<BankAccount> getAllBankAccounts() {   
         List<BankAccount> allAccount = this.bankRepo.findAll();
-        return new ResponseEntity<>(allAccount, HttpStatus.OK);
+        return allAccount;
     }
 
-    public ResponseEntity<String> deleteAccountByID(Integer accountId) {
+    public String deleteAccountByID(Integer accountId) {
         if (accountId == null){
             throw new IllegalArgumentException("Account ID cannot be NUll");
         }
@@ -48,7 +54,7 @@ public class ManageAccountService {
             throw new AccountNotFoundException("Bank Account Not Found!");
         }
         this.bankRepo.deleteById(accountId);
-        return new ResponseEntity<>("Account with ID-" + accountId + " Succesfully Deleted!" , HttpStatus.OK);
+        return "Account with ID-" + accountId + " Succesfully Deleted!";
 
         // try{
         //     this.bankRepo.deleteById(accountId);

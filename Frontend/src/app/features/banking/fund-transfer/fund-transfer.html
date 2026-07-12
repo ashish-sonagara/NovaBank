@@ -1,1 +1,79 @@
-<p>fund-transfer works!</p>
+<!-- FUND TRANSFER PAGE (separate dedicated) -->
+<div class="page-panel" id="panel-transfer">
+  <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px">
+    Dedicated fund transfer between accounts
+  </div>
+  <div style="max-width: 520px">
+    <div class="card" style="margin-bottom: 12px">
+      <div class="card-header"><span class="card-title">Transfer Details</span></div>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div>
+          <label class="form-label">From Account</label>
+          <select
+            style="
+              width: 100%;
+              height: 36px;
+              border: 0.5px solid var(--border);
+              border-radius: 7px;
+              padding: 0 10px;
+              font-family: 'DM Sans', sans-serif;
+              font-size: 13px;
+              background: var(--surface);
+              outline: none;
+              color: var(--text-primary);
+            "
+          >
+            <option>#1042 — Ramesh Kumar (SAVINGS)</option>
+            <option>#2091 — Priya Sharma (CURRENT)</option>
+            <option>#0917 — Sneha Verma (SAVINGS)</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">To Account</label>
+          <select
+            style="
+              width: 100%;
+              height: 36px;
+              border: 0.5px solid var(--border);
+              border-radius: 7px;
+              padding: 0 10px;
+              font-family: 'DM Sans', sans-serif;
+              font-size: 13px;
+              background: var(--surface);
+              outline: none;
+              color: var(--text-primary);
+            "
+          >
+            <option>#3017 — Aarav Mehta (FD)</option>
+            <option>#1042 — Ramesh Kumar (SAVINGS)</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Amount (₹)</label>
+          <input
+            class="form-input-sm"
+            style="background: var(--surface)"
+            type="number"
+            placeholder="Enter amount"
+          />
+        </div>
+        <div>
+          <label class="form-label">Remarks (optional)</label>
+          <input
+            class="form-input-sm"
+            style="background: var(--surface)"
+            type="text"
+            placeholder="e.g. Loan repayment"
+          />
+        </div>
+        <button
+          class="btn-service btn-transfer"
+          style="margin-top: 4px"
+          onclick="showToast('Transfer initiated successfully', 'success')"
+        >
+          <i class="ti ti-arrows-exchange" aria-hidden="true"></i> Confirm Transfer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

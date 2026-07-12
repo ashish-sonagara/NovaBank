@@ -5,8 +5,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.ashish.BankManagement.enums.AccountStatus;
 import com.ashish.BankManagement.enums.AccountType;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,9 +32,19 @@ public class BankAccount {
     private Integer id;
 
     private String accountOwner;
+    
+    @Enumerated(EnumType.STRING)
     private AccountType accountType;
-    private int accountNumber;
+
+    @Column(unique = true, nullable = false)
+    private Long accountNumber;
     private double currentBalance;
+    private String bankName;
+    private String email;
+    private double phoneNumber;
+
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
 
     @OneToMany(mappedBy = "bankAccount")
     private List<Transaction> transactionHistory = new ArrayList<Transaction>();

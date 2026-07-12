@@ -1,1 +1,44 @@
-<p>settings works!</p>
+<!-- SETTINGS PAGE -->
+<div class="page-panel" id="panel-settings">
+    <div style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">System configuration and preferences
+    </div>
+    <div style="max-width:480px; display:flex; flex-direction:column; gap:12px;">
+        <div class="card">
+            <div class="card-title" style="margin-bottom:14px;">API Configuration</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <div>
+                    <label class="form-label">Base URL</label>
+                    <input class="form-input-sm" style="background:var(--surface);" value="http://localhost:8080" />
+                </div>
+                <div>
+                    <label class="form-label">Environment</label>
+                    <select
+                        style="width:100%; height:36px; border:0.5px solid var(--border); border-radius:7px; padding:0 10px; font-family:'DM Sans',sans-serif; font-size:13px; background:var(--surface); outline:none; color:var(--text-primary);">
+                        <option>Development</option>
+                        <option>Staging</option>
+                        <option>Production</option>
+                    </select>
+                </div>
+                <button class="btn-service btn-transfer" style="margin-top:4px; width:auto; padding:0 16px;"
+                    onclick="showToast('Configuration saved', 'success')">
+                    Save Settings
+                </button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="margin-bottom:14px;">Profile Settings</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <div><label class="form-label">Full Name</label><input class="form-input-sm"
+                        style="background:var(--surface);" value="Ashish Kumar" /></div>
+                <div><label class="form-label">Email</label><input class="form-input-sm"
+                        style="background:var(--surface);" value="admin@nexabank.com" /></div>
+                <div><label class="form-label">Role</label><input class="form-input-sm"
+                        style="background:var(--surface);" value="Administrator" readonly /></div>
+                <button class="btn-service btn-transfer" style="margin-top:4px; width:auto; padding:0 16px;"
+                    onclick="showToast('Profile updated', 'success')">
+                    Update Profile
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
